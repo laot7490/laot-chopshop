@@ -25,7 +25,7 @@ end)
 
 Citizen.CreateThread(function()
 	while LAOT == nil do
-		TriggerEvent('LAOTCore:getSharedObject', function(obj) LAOT = obj end)
+		TriggerEvent('LAOTCore:GetObject', function(obj) LAOT = obj end)
 		Citizen.Wait(0)
 	end
 end)
@@ -62,7 +62,7 @@ end
 
 RegisterNetEvent('laot-chopshop:Notification')
 AddEventHandler('laot-chopshop:Notification', function(type, text)
-	LAOT.Notification(type, text)
+	LAOT.Functions.Notify(type, text)
 end)
 
 
@@ -74,7 +74,7 @@ Citizen.CreateThread(function()
 		if IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C.Car["x"], C.Car["y"], C.Car["z"], true) <= 3 then
 				sleep = 2
-				LAOT.DrawText3D(C.Car["x"], C.Car["y"], C.Car["z"]+0.50, L["wreck"])
+				LAOT.Functions.DrawText3D(C.Car["x"], C.Car["y"], C.Car["z"]+0.50, L["wreck"])
 				if IsControlJustPressed(0, Keys["E"]) then
 					ESX.TriggerServerCallback('laot-chopshop:GetPolice', function(laot)
 						if laot == 1 then
@@ -123,7 +123,7 @@ Citizen.CreateThread(function()
 								end
 							end
 						else
-							LAOT.Notification("error", "Yeterli polis yok!")
+							LAOT.Functions.Notify("error", "Yeterli polis yok!")
 						end
 					end)
 				end
@@ -141,7 +141,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Jantı Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Jantı Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.rim1 = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -171,7 +171,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~y~E ~w~- Jantı Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~y~E ~w~- Jantı Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.rim2 = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -200,7 +200,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~g~E ~w~- Jantı Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~g~E ~w~- Jantı Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.rim3 = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -229,7 +229,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~r~E ~w~- Jantı Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~r~E ~w~- Jantı Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.rim4 = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -261,7 +261,7 @@ Finish = function()
 	USER.radio = false
 	USER.radioDone = false
 	USER.engine = false
-	LAOT.Notification("inform", "Araç parçalandı.")
+	LAOT.Functions.Notify("inform", "Araç parçalandı.")
 end
 
 Citizen.CreateThread(function()
@@ -272,7 +272,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1.5 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Radyoyu Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Radyoyu Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.radio = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -297,7 +297,7 @@ Citizen.CreateThread(function()
 
 			if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), C1.x, C1.y, C1.z, true) <= 1.5 then
 				sleep = 2
-				LAOT.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Motoru Çıkar")
+				LAOT.Functions.DrawText3D(C1.x, C1.y, C1.z, "~b~E ~w~- Motoru Çıkar")
 				if IsControlJustPressed(0, 38) then
 					USER.engine = true
 					TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_WELDING", 0, true)
@@ -307,7 +307,7 @@ Citizen.CreateThread(function()
 						ClearPedTasks(GetPlayerPed(-1))
 
 						if math.random(1,10) == 1 then
-							LAOT.Notification("inform", "Motoru çıkarırken araçta NOS buldun!")
+							LAOT.Functions.Notify("inform", "Motoru çıkarırken araçta NOS buldun!")
 							TriggerServerEvent("laot-chopshop:AddItem", "nitro", 1)
 						end
 						
@@ -326,7 +326,7 @@ Citizen.CreateThread(function()
 		if not USER.Wrecking then
 			if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), C.NPC["coords"].x, C.NPC["coords"].y, C.NPC["coords"].z, true) <= 3 then
 				sleep = 2
-				LAOT.DrawText3D(C.NPC["coords"].x, C.NPC["coords"].y, C.NPC["coords"].z+2.0, L["sell"])
+				LAOT.Functions.DrawText3D(C.NPC["coords"].x, C.NPC["coords"].y, C.NPC["coords"].z+2.0, L["sell"])
 				if IsControlJustPressed(0, 38) then
 					playerAnim()
 					Citizen.Wait(2000)
